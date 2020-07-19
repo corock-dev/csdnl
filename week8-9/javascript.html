@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      // addEvent 함수 정의
+      function addEvent(target, eventType, eventHandler, useCapture) {
+        if (target.addEventListener) {
+          target.addEventListener(eventType, eventHandler, useCapture ? useCapture : false);
+        } else if (target.attachEvent) {
+          var r = target.attachEvent("on" + eventTYpe, eventHandler);
+        }
+      }
+
+      // 클릭 이벤트 핸들러 정의(선택한 요소에 class 설정)
+      function clickHandler(Event) {
+        var nav = document.getElementById('navigation');
+        for (var i = 0; i < nav.childNodes.length; i++) {
+          var child = nav.childNodes[i];
+          if (child.nodeType == 3) {
+            continue;
+          }
+          child.className = '';
+        }
+        event.target.className = 'selected';
+      }
+
+      // 클릭 이벤트 호출
+      addEvent(window, 'load', function(eventObj) {
+        var nav = document.getElementById('navigation');
+        for (var i = 0; i < nav.childNodes.length; i++) {
+          var child = nav.childNodes[i];
+          if (child.nodeType == 3) {
+            continue;
+          }
+          addEvent(child, 'click', clickHandler);
+        }
+      });
+    </script>
+
+    <!-- CSS 적용 -->
+    <style type="text/css">
+      #navigation li {
+        list-style: none;
+        float: left;
+        padding: 5px;
+      }
+      #navigation {
+        cursor: pointer;
+      }
+      #navigation .selected {
+        background-color: red;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="navigation">
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+      <li class="selected">jQuery</li>
+      <li>PHP</li>
+      <li>MySQL</li>
+    </ul>
+  </body>
+</html>

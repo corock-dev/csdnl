@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      // jQuery를 통해 이전 javascript.html에서 작성했던 코드가 3줄로 요약됨
+      $('#navigation li').live('click', function() {
+        // 다른 요소가 클릭되면 selected 클래스 속성을 클릭한 곳(this)으로 이동
+        $('#navigation li').removeClass('selected');
+        $(this).addClass('selected');
+      });
+    </script>
+
+    <!-- CSS 적용 -->
+    <style type="text/css">
+      #navigation li {
+        list-style: none;
+        float: left;
+        padding: 5px;
+      }
+      #navigation {
+        cursor: pointer;
+      }
+      #navigation .selected {
+        background-color: red;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="navigation">
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+      <li class="selected">jQuery</li>
+      <li>PHP</li>
+      <li>MySQL</li>
+    </ul>
+  </body>
+</html>
